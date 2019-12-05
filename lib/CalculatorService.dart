@@ -1,3 +1,6 @@
+
+import 'calc.dart';
+
 class ChatMessageSnapshot
 {
   ChatMessageSnapshot(this.is_system_user, this.created_time, this.message);
@@ -5,8 +8,6 @@ class ChatMessageSnapshot
   DateTime created_time = DateTime.now();
   String message;
 }
-
-
 
 class CalculatorService
 {
@@ -26,12 +27,15 @@ class CalculatorService
     this.messages.insert(0, chatMsg);
     if(OnAdd != null)
       this.OnAdd();
-    chatMsg = ChatMessageSnapshot(true, DateTime.now(), "Computed: " + msg);
+    double result = (new Calculator(msg)).calculate();
+    chatMsg = ChatMessageSnapshot(true, DateTime.now(), result.toString());
     this.messages.insert(0, chatMsg);
     if(OnAdd != null)
       this.OnAdd();
   }
+
   ChatMessageSnapshot getMessage(int i){
     return messages[i];
   }
 }
+

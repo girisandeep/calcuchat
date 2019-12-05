@@ -84,9 +84,7 @@ class ChatScreenState extends State<ChatScreen> {
   }
   void OnAppend()
   {
-     print("OnAppend");
-//    _listKey.currentState.insertItem(this.reference.messages.length-1);
-      _listKey.currentState.insertItem(0);
+    _listKey.currentState.insertItem(0);
   }
 
   CupertinoButton getIOSSendButton() {
