@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/ChatMessageListItem.dart';
-import 'package:flutter_app/CalculatorService.dart';
+import 'package:Calcuchat/ChatMessageListItem.dart';
+import 'package:Calcuchat/CalculatorService.dart';
 
 //final googleSignIn = new GoogleSignIn();
 //final analytics = new FirebaseAnalytics();
@@ -34,7 +34,7 @@ class ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text("Flutter Chat App"),
+          title: new Text("Calculator"),
           elevation:
           Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
           actions: <Widget>[

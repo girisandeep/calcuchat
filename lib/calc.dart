@@ -1,13 +1,29 @@
+import 'dart:collection';
 import 'dart:math';
+
 class Calculator
 {
   String input;
-  Calculator(this.input);
-  int index = 0;
 
-  double calculate() {
+  int index = 0;
+  var p = new RegExp(r'^[a-zA-Z]+[0-9a-zA-Z]*$');
+  var vartable = new HashMap<String, double>();
+  bool isValidVar(String str){
+    return str.indexOf(p) > -1;
+  }
+  String calculate(String expression) {
+    this.input = expression;
+    this.index = 0;
+    var eqIdx = input.indexOf('=');
+    if(eqIdx > -1) {
+      var variable = input.substring(0, eqIdx).trim();
+      index = eqIdx + 1;
+      double result = this.addsub();
+      vartable[variable] = result;
+      return "";
+    }
     double result = this.addsub();
-    return result;
+    return result.toString();
   }
 
   double addsub(){
@@ -109,7 +125,7 @@ class Calculator
         return 0.0;
       }
     }
-    else {
+    else if("0123456789.".indexOf(input[index]) > -1){
       var sb = new StringBuffer("");
       while(index < input.length && "0123456789.".indexOf(input[index]) > -1){
         sb.write(input[index]);
@@ -119,13 +135,30 @@ class Calculator
       var result = double.parse(numStr);
       return result;
     }
+    else {
+      var sb = new StringBuffer("");
+      var newindex = input.indexOf(new RegExp('[^a-zA-Z0-9]+'), index);
+      var varname = input.substring(index, newindex);
+      index = newindex;
+      if(vartable.containsKey(varname)){
+        return vartable[varname];
+      }
+      else {
+        print("Invalid variable name: " + varname);
+        return 0.0;
+      }
+    }
   }
 
 }
 
+//TODO: Exception handling
 main()
 {
-  var c = new Calculator("5*(2*2+5*(3+3))-10");
+  var c = new Calculator();
   print("======");
-  print(c.calculate());
+  print(c.calculate("5"));
+  print(c.calculate("y = 50"));
+  print(c.calculate("x*y+10"));
+
 }

@@ -11,7 +11,9 @@ class ChatMessageSnapshot
 
 class CalculatorService
 {
+  Calculator calculator;
   CalculatorService(){
+    this.calculator = new Calculator();
     var chatMsg = ChatMessageSnapshot(true, DateTime.now(), "Welcome!");
     this.messages = new List<ChatMessageSnapshot>();
     this.messages.add(chatMsg);
@@ -27,8 +29,8 @@ class CalculatorService
     this.messages.insert(0, chatMsg);
     if(OnAdd != null)
       this.OnAdd();
-    double result = (new Calculator(msg)).calculate();
-    chatMsg = ChatMessageSnapshot(true, DateTime.now(), result.toString());
+    String result = calculator.calculate(msg);
+    chatMsg = ChatMessageSnapshot(true, DateTime.now(), result);
     this.messages.insert(0, chatMsg);
     if(OnAdd != null)
       this.OnAdd();

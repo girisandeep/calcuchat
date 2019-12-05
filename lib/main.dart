@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/ChatScreen.dart';
-import 'package:flutter_app/util/Themes.dart';
+import 'package:Calcuchat/ChatScreen.dart';
+import 'package:Calcuchat/util/Themes.dart';
 
 void main() => runApp(new FlutterChatApp());
 

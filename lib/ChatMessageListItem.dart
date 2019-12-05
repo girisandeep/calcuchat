@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/CalculatorService.dart';
+import 'package:Calcuchat/CalculatorService.dart';
 
 var currentUserEmail;
 
@@ -74,7 +74,7 @@ class ChatMessageListItem extends StatelessWidget {
         child: new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            new Text("Python",
+            new Text("Calc",
                 style: new TextStyle(
                     fontSize: 14.0,
                     color: Colors.black,
