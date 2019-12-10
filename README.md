@@ -1,6 +1,6 @@
-# flutter_app
+# calcuchat
 
-A new Flutter application.
+A simple calculator with chat-like UI.
 
 ## Getting Started
 

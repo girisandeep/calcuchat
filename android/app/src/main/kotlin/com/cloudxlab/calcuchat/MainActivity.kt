@@ -1,4 +1,4 @@
-package com.example.flutter_app
+package com.cloudxlab.calcuchat
 
 import android.os.Bundle
 

@@ -136,8 +136,12 @@ class Calculator
       return result;
     }
     else {
-      var sb = new StringBuffer("");
+//      var sb = new StringBuffer("");
+//      print("index: " + index.toString());
       var newindex = input.indexOf(new RegExp('[^a-zA-Z0-9]+'), index);
+      if (newindex == -1)
+        newindex = input.length;
+//      print("newindex: "  + newindex.toString());
       var varname = input.substring(index, newindex);
       index = newindex;
       if(vartable.containsKey(varname)){
@@ -157,8 +161,11 @@ main()
 {
   var c = new Calculator();
   print("======");
-  print(c.calculate("5"));
+//  print(c.calculate("5"));
   print(c.calculate("y = 50"));
-  print(c.calculate("x*y+10"));
+  print(c.calculate("y"));
+  assert(c.calculate("y") == "50.0");
+  print(c.calculate("y+1*(5+6)"));
+  assert(c.calculate("y+1*(5+6)") == "61.0");
 
 }

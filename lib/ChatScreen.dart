@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Calcuchat/ChatMessageListItem.dart';
-import 'package:Calcuchat/CalculatorService.dart';
+
+import 'CalculatorService.dart';
+import 'ChatMessageListItem.dart';
 
 //final googleSignIn = new GoogleSignIn();
 //final analytics = new FirebaseAnalytics();
@@ -20,12 +20,12 @@ class ChatScreen extends StatefulWidget {
 }
 
 class ChatScreenState extends State<ChatScreen> {
-
-  ChatScreenState(){
+  ChatScreenState() {
     reference.OnAdd = OnAppend;
   }
+
   final TextEditingController _textEditingController =
-  new TextEditingController();
+      new TextEditingController();
   bool _isComposingMessage = false;
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
   final reference = new CalculatorService();
@@ -36,7 +36,7 @@ class ChatScreenState extends State<ChatScreen> {
         appBar: new AppBar(
           title: new Text("Calculator"),
           elevation:
-          Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
+              Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
           actions: <Widget>[
             new IconButton(
                 icon: new Icon(Icons.exit_to_app), onPressed: _signOut)
@@ -53,7 +53,8 @@ class ChatScreenState extends State<ChatScreen> {
                   initialItemCount: 1,
                   //sort: (a, b) => b.key.compareTo(a.key),
                   //comparing timestamp of messages to check which one would appear first
-                  itemBuilder: (BuildContext context, int index, Animation<double> animation) {
+                  itemBuilder: (BuildContext context, int index,
+                      Animation<double> animation) {
                     return new ChatMessageListItem(
                       messageSnapshot: this.reference.getMessage(index),
                       animation: animation,
@@ -64,7 +65,7 @@ class ChatScreenState extends State<ChatScreen> {
               new Divider(height: 1.0),
               new Container(
                 decoration:
-                new BoxDecoration(color: Theme.of(context).cardColor),
+                    new BoxDecoration(color: Theme.of(context).cardColor),
                 child: _buildTextComposer(),
               ),
               new Builder(builder: (BuildContext context) {
@@ -75,15 +76,15 @@ class ChatScreenState extends State<ChatScreen> {
           ),
           decoration: Theme.of(context).platform == TargetPlatform.iOS
               ? new BoxDecoration(
-              border: new Border(
-                  top: new BorderSide(
-                    color: Colors.grey[200],
-                  )))
+                  border: new Border(
+                      top: new BorderSide(
+                  color: Colors.grey[200],
+                )))
               : null,
         ));
   }
-  void OnAppend()
-  {
+
+  void OnAppend() {
     _listKey.currentState.insertItem(0);
   }
 
@@ -148,7 +149,7 @@ class ChatScreenState extends State<ChatScreen> {
                   },
                   onSubmitted: _textMessageSubmitted,
                   decoration:
-                  new InputDecoration.collapsed(hintText: "Send a message"),
+                      new InputDecoration.collapsed(hintText: "Send a message"),
                 ),
               ),
               new Container(

@@ -24,16 +24,18 @@ class CalculatorService
   List <ChatMessageSnapshot> messages;
 
   Function OnAdd;
-  int sendMessage(String msg){
+  void sendMessage(String msg){
     var chatMsg = ChatMessageSnapshot(false, DateTime.now(), msg);
     this.messages.insert(0, chatMsg);
     if(OnAdd != null)
       this.OnAdd();
     String result = calculator.calculate(msg);
-    chatMsg = ChatMessageSnapshot(true, DateTime.now(), result);
-    this.messages.insert(0, chatMsg);
-    if(OnAdd != null)
-      this.OnAdd();
+    if(result != null && result.length > 0) {
+      chatMsg = ChatMessageSnapshot(true, DateTime.now(), result);
+      this.messages.insert(0, chatMsg);
+      if (OnAdd != null)
+        this.OnAdd();
+    }
   }
 
   ChatMessageSnapshot getMessage(int i){
