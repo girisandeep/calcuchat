@@ -1,8 +1,14 @@
-# calcuchat
+# CalcuChat
 
 A simple calculator with chat-like UI.
 
-## Getting Started
+The app is available in Google Playstore: https://play.google.com/store/apps/details?id=com.cloudxlab.calcuchat&hl=da
+
+I am open sourcing it so that people can learn how to write an expression parser and create a chat-like mobile app using flutter.
+
+Feel free to contribute to it.
+
+## Contibuting - Learn Flutter
 
 This project is a starting point for a Flutter application.
 
