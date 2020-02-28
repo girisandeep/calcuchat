@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+
 import 'ChatScreen.dart';
 import 'util/Themes.dart';
 
@@ -18,6 +19,7 @@ class FlutterChatApp extends StatelessWidget {
           : Themes.kDefaultTheme,
       home: new ChatScreen(),
     );
+
   }
 }
 

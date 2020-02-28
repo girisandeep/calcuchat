@@ -1,15 +1,22 @@
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 
 import 'CalculatorService.dart';
 
 var currentUserEmail;
 
+class ChatMessageCopyEvent {
+  String text;
+
+  ChatMessageCopyEvent(this.text);
+}
 class ChatMessageListItem extends StatelessWidget {
   final ChatMessageSnapshot messageSnapshot;
 
   final Animation animation;
+  final EventBus eventBus;
 
-  ChatMessageListItem({this.messageSnapshot, this.animation});
+  ChatMessageListItem({this.messageSnapshot, this.animation, this.eventBus});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +46,11 @@ class ChatMessageListItem extends StatelessWidget {
                     fontWeight: FontWeight.bold)),
             new Container(
               margin: const EdgeInsets.only(top: 5.0),
-              child: new Text(messageSnapshot.message),
+              child: new GestureDetector(
+                  onTap: (){
+                    eventBus.fire(ChatMessageCopyEvent(messageSnapshot.message));
+                  },
+                  child: new Text(messageSnapshot.message)),
             ),
           ],
         ),
@@ -82,7 +93,11 @@ class ChatMessageListItem extends StatelessWidget {
                     fontWeight: FontWeight.bold)),
             new Container(
               margin: const EdgeInsets.only(top: 5.0),
-              child: new Text(this.messageSnapshot.message),
+              child: new GestureDetector(
+                  onTap: (){
+                    eventBus.fire(ChatMessageCopyEvent(messageSnapshot.message));
+                  },
+                  child: new Text(messageSnapshot.message)),
             ),
           ],
         ),

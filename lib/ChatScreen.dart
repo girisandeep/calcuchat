@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:event_bus/event_bus.dart';
 
 import 'CalculatorService.dart';
 import 'ChatMessageListItem.dart';
@@ -20,8 +21,23 @@ class ChatScreen extends StatefulWidget {
 }
 
 class ChatScreenState extends State<ChatScreen> {
+  final EventBus eventBus = EventBus();
   ChatScreenState() {
     reference.OnAdd = OnAppend;
+    eventBus.on<ChatMessageCopyEvent>().listen((event) {
+      debugPrint("chatmessagecopy: " + event.text);
+      // All events are of type UserLoggedInEvent (or subtypes of it).
+      setState(() {
+        _textEditingController.text = event.text;
+      });
+      String _newValue = event.text;
+      _textEditingController.value = TextEditingValue(
+        text: _newValue,
+        selection: TextSelection.fromPosition(
+          TextPosition(offset: _newValue.length),
+        ),
+      );
+    });
   }
 
   final TextEditingController _textEditingController =
@@ -58,6 +74,7 @@ class ChatScreenState extends State<ChatScreen> {
                     return new ChatMessageListItem(
                       messageSnapshot: this.reference.getMessage(index),
                       animation: animation,
+                      eventBus: this.eventBus,
                     );
                   },
                 ),
@@ -144,6 +161,7 @@ class ChatScreenState extends State<ChatScreen> {
                   controller: _textEditingController,
                   onChanged: (String messageText) {
                     setState(() {
+                      debugPrint("textfield changed");
                       _isComposingMessage = messageText.length > 0;
                     });
                   },
