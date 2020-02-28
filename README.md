@@ -2,9 +2,9 @@
 
 A simple calculator with chat-like UI.
 
-The app is available in Google Playstore: https://play.google.com/store/apps/details?id=com.cloudxlab.calcuchat&hl=da
+The app is available in Google Playstore: https://play.google.com/store/apps/details?id=com.cloudxlab.calcuchat
 
-I am open sourcing it so that people can learn how to write an expression parser and create a chat-like mobile app using flutter.
+I am open sourcing it so that people can learn how to write an expression parser [see src] and create a chat-like mobile app using flutter.
 
 Feel free to contribute to it.
 
